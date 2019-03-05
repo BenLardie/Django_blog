@@ -11,3 +11,9 @@ def home_page(request):
     context = {'articles': Article.objects.all()}
     response = render(request, 'index.html', context)
     return HttpResponse(response)
+
+def open_blog(request, id):
+    blog = Article.objects.get(pk=id)
+    context = {'blogs': blog}
+    response = render(request, 'article.html', context)
+    return HttpResponse(response)
