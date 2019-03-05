@@ -1,3 +1,59 @@
 body {
-  color: dodgerblue;
+  background-color: dodgerblue;
+}
+
+header {
+  color: orange;
+  font-size: 4em;
+  font-family: 'Righteous', cursive;
+  text-align: left;
+  text-shadow: 0.5px 2px white;
+  padding: 10px 10px 10px 30px;
+  border-bottom: 10px solid white;
+  box-shadow: 1px 10px;
+}
+
+.opening-blurb {
+  color: white;
+  font-family: 'Asap', sans-serif;
+  font-size: 1em;
+  text-align: center;
+
+}
+
+.main-pic {
+  max-width: 7%;
+  display: inline-block;
+}
+
+a {
+font-family: 'Asap', sans-serif;
+display: block;
+text-align: center;
+text-decoration: none;
+font-size: 3em;
+color: orange;
+}
+
+a:hover {
+  color: white;
+}
+
+article {
+  width: 75%;
+  margin: 0 auto;
+}
+
+h2, h3 {
+  font-family: 'Righteous', cursive;
+  color: orange;
+  }
+
+p {
+  font-family: 'Asap', sans-serif;
+  color: white;
+}
+
+.author {
+  font-family: 'Permanent Marker', cursive;
 }

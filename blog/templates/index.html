@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+<p class="opening-blurb">Welcome to my dev blog! This is where I will share what I learn so you can learn along with me.
+<br>Or if your my teacher you can tell me if I am right or wrong and lying to people.<br>All my post are listed below feel free to explore and learn.</p>
       {% for article in articles%}
       <a href="{% url 'blog_opened' id=article.pk%}">{{ article.title }}</a>
 
