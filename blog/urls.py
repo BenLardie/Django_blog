@@ -20,6 +20,6 @@ from django.contrib import admin
 urlpatterns = [
     path('', root),
     path('admin/', admin.site.urls),
-    path('home/', home_page),
+    path('home/', home_page, name='main_page'),
     path('articles/<int:id>', open_blog, name='blog_opened')
 ]
