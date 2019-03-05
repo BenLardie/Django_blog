@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    its alive
-  </body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+<article>
+<h2>{{ article.title }}</h2>
+<p>{{ article.body }}</p>
+<h3>{{article.published_date }}</h3>
+<p>{{ article.author }}</p>
+</article>
+
+{%endblock%}

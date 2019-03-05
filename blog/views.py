@@ -8,12 +8,12 @@ def root(request):
     return HttpResponseRedirect('home')
 
 def home_page(request):
-    context = {'articles': Article.objects.all()}
+    context = {'articles': Article.objects.filter(draft = False).order_by('published_date').all()}
     response = render(request, 'index.html', context)
     return HttpResponse(response)
 
 def open_blog(request, id):
-    blog = Article.objects.get(pk=id)
-    context = {'blogs': blog}
+    article = Article.objects.get(pk=id)
+    context = {'article': article}
     response = render(request, 'article.html', context)
     return HttpResponse(response)
