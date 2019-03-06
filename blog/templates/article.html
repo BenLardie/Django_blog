@@ -1,11 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
-<article>
+<div class='article-display'>
 <h2>{{ article.title }}</h2>
 <p>{{ article.body }}</p>
 <h3>{{article.published_date }}</h3>
 <p class='author'>{{ article.author }}</p>
-</article>
+</div>
+
+<ul>
+{% for comment in article.comments.all %}
+  <p>{{ comment.name }}</p>
+  <li>{{comment.message}}</li>
+    {%endfor%}
+</ul>
+
+<form action="{% url 'create_comment' %}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="article" value="{{ article.pk }}"/>
+  <label for="name">
+    <span>Name:</span>
+    <input id="name" type="text" name='name'>
+  </label>
+  <label for="new-comment">
+    <span>Comment:</span>
+    <textarea name="new-comment"></textarea>
+    </label>
+    <input type="submit" value="submit"/>
+</form>
 
 <a href="{%url 'main_page'%}">back</a>
 {%endblock%}

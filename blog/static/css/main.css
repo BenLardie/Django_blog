@@ -7,6 +7,7 @@ header {
   background-color: dodgerblue;
   border-bottom: 10px solid white;
   box-shadow: 1px 10px;
+  padding: 0;
 }
 
 .welcome {
@@ -28,6 +29,7 @@ header {
   max-width: 20%;
   margin: 0 auto;
   text-align: center;
+  display: block;
 }
 
 a {
@@ -44,6 +46,10 @@ a:hover {
   background-color: purple;
 }
 
+.article-links:hover {
+  background-color: purple;
+}
+
 .main-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -51,19 +57,23 @@ a:hover {
   margin: auto;
 }
 
-article {
+.article-display {
   width: 75%;
-  margin: 0 auto;
+  margin: 10px auto 0;
+  background-color: navy;
 }
 
 h2, h3 {
   font-family: 'Righteous', cursive;
   color: orange;
+  padding: 5px;
+  margin: 0;
   }
 
 p {
   font-family: 'Asap', sans-serif;
   color: white;
+  padding: 10px;
 }
 
 .author {
