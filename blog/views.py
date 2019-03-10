@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from blog.models import Article, Comment
+from blog.forms import ArticleForm
 
 
 def root(request):
@@ -26,3 +27,16 @@ def create_comment(request):
                                          Article=Article.objects.get(pk=request.POST['article'])
                                          )
     return HttpResponseRedirect('/articles/'+ request.POST['article'])
+
+
+def create_article(request):
+    if request.method == "POST":
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            new_product = form.save()
+            return HttpResponseRedirect('/articles/' +str(new_product.pk))
+        else:
+            print(form.errors)
+    else:
+        form = ArticleForm()
+    return render(request, 'newarticle.html', {'form': form})
