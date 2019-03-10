@@ -9,6 +9,9 @@ class Article(models.Model):
     published_date = models.DateField()
     author = models.CharField(max_length=255)
 
+    def __str__(self):
+        return "{}".format(self.title)
+
 class Comment(models.Model):
     name = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)

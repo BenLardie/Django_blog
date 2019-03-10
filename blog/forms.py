@@ -20,5 +20,5 @@ class ArticleForm(forms.ModelForm):
             raise ValidationError('The body must contain more then 1 character.')
         if draft == True and published < today:
             raise ValidationError('If draft is selected the published date must be in the future.')
-        if draft == False and published >= today:
+        if draft == False and published > today:
             raise ValidationError('Published date cannot be a future date.')

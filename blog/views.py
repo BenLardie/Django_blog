@@ -28,13 +28,18 @@ def create_comment(request):
                                          )
     return HttpResponseRedirect('/articles/'+ request.POST['article'])
 
+def new_article(request):
+    new_form = ArticleForm()
+    context = {'form': new_form}
+    response = render(request, 'newarticle.html', context)
+    return HttpResponse(response)
 
 def create_article(request):
     if request.method == "POST":
         form = ArticleForm(request.POST)
         if form.is_valid():
-            new_product = form.save()
-            return HttpResponseRedirect('/articles/' +str(new_product.pk))
+            form = form.save()
+            return HttpResponseRedirect('/articles/' +str(form.pk))
         else:
             print(form.errors)
     else:
