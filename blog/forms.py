@@ -2,6 +2,12 @@ from blog.models import Article
 from django import forms
 from django.core.exceptions import ValidationError
 import datetime
+from django.forms import CharField, PasswordInput, Form
+
+
+class LoginForm(Form):
+    username = CharField(label ="User Name", max_length=64)
+    password = CharField(widget=PasswordInput())
 
 
 class ArticleForm(forms.ModelForm):

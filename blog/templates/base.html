@@ -13,6 +13,11 @@
     <header>
       <img class="main-pic" src="/static/images/benhead.png" alt="">
     </header>
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'logout' %}">Log out</a>
+    {% else %}
+    <a href="{% url 'login' %}">Log in</a>
+    {% endif %}
     {% block content %}
     {% endblock %}
   </body>
