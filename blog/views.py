@@ -1,12 +1,12 @@
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from blog.models import Article, Comment
 from blog.forms import ArticleForm
 from blog.forms import LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth.decorators import login_required
 
 def root(request):
     return HttpResponseRedirect('home')
@@ -31,12 +31,15 @@ def create_comment(request):
                                          )
     return HttpResponseRedirect('/articles/'+ request.POST['article'])
 
+
+
 def new_article(request):
     new_form = ArticleForm()
     context = {'form': new_form}
     response = render(request, 'newarticle.html', context)
     return HttpResponse(response)
 
+@login_required
 def create_article(request):
     if request.method == "POST":
         form = ArticleForm(request.POST)
@@ -87,3 +90,22 @@ def signup(request):
         form = UserCreationForm()
     html_response = render(request, 'signup.html', {'form': form})
     return HttpResponse(html_response)
+
+
+@login_required
+def edit_article(request, id):
+    article = get_object_or_404(Article, id=id)
+    if request.method == 'GET':
+        form = ArticleForm(instance=article)
+        context = {'form': form, 'article': article}
+        return render(request, 'edit.html', context)
+
+    elif request.method == 'POST':
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            updated_article = form.save()
+            return HttpResponseRedirect('/articles/' + str(article.id))
+        else:
+            context = {'form': form, 'article': article}
+            response = render(request, 'edit.html', context)
+            return HttpResponse(response)
